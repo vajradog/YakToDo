@@ -8,7 +8,7 @@ import time
 class TodoApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Chakrishar's YakToDo List")
+        self.root.title("YakToDo List")
         
         self.tasks_todo = []
         self.tasks_doing = []
@@ -89,7 +89,7 @@ class TodoApp:
         self.todo_entry = tk.Entry(self.todo_entry_frame, width=30)
         self.todo_entry.pack(side=tk.LEFT, padx=5)
         self.todo_entry.bind("<Return>", lambda event: self.add_task())
-        self.todo_entry.insert(0, "Enter items here")
+        self.todo_entry.insert(0, "Type tasks here and press enter")
         self.todo_entry.bind("<FocusIn>", self.clear_placeholder)
         self.todo_entry.bind("<FocusOut>", self.set_placeholder)
         
@@ -123,7 +123,7 @@ class TodoApp:
         self.audio_file_label = tk.Label(self.audio_frame, text="No file selected", width=30)
         self.audio_file_label.pack(side=tk.TOP, padx=5)
         
-        self.browse_button = tk.Button(self.audio_frame, text="Browse", command=self.browse_audio)
+        self.browse_button = tk.Button(self.audio_frame, text="Browse background audio", command=self.browse_audio)
         self.browse_button.pack(side=tk.LEFT, padx=5)
         
         self.play_button = tk.Button(self.audio_frame, text="Play", command=self.play_audio, state=tk.DISABLED)
@@ -145,7 +145,7 @@ class TodoApp:
 
     def add_task(self):
         task = self.todo_entry.get()
-        if task and task != "Enter items here":
+        if task and task != "Type tasks here and press enter":
             self.tasks_todo.append(task)
             self.update_text_widgets()
             self.todo_entry.delete(0, tk.END)
@@ -240,13 +240,13 @@ class TodoApp:
         return "break"
 
     def clear_placeholder(self, event):
-        if self.todo_entry.get() == "Enter items here":
+        if self.todo_entry.get() == "Type tasks here and press enter":
             self.todo_entry.delete(0, tk.END)
             self.todo_entry.config(fg="black")
 
     def set_placeholder(self, event):
         if not self.todo_entry.get():
-            self.todo_entry.insert(0, "Enter items here")
+            self.todo_entry.insert(0, "Type tasks here and press enter")
             self.todo_entry.config(fg="grey")
 
     def browse_audio(self):
@@ -278,7 +278,7 @@ class TodoApp:
         self.root.after(self.scroll_speed, self.update_ticker)
 
     def show_info(self):
-        info_text = "Chakrishar's YakToDo List\nVersion: 1.0\nDeveloped by: Chakrishar"
+        info_text = "YakToDo List\n2020 Version: 1.0\nDeveloped by: Thupten Chakrishar aka @vajradog"
         messagebox.showinfo("About", info_text)
 
 if __name__ == "__main__":
